@@ -38,6 +38,7 @@ func sumProcess(value int) int {
 
 func channelsF(n int, k int) int {
 	var channelsN []int
+	baseValue := k
 
 	// generate channels
 	for i := 1; i <= n; i++ {
@@ -46,15 +47,17 @@ func channelsF(n int, k int) int {
 
 	for {
 
-		fmt.Println("result: ", channelsN)
-
 		channelsN = append(channelsN[:k-1], channelsN[k:]...)
-		if len(channelsN) == 2 {
+		if len(channelsN) == 1 {
 			break
 		}
+		k++
 
+		if k > len(channelsN) {
+			k = baseValue - 1
+		}
 	}
 
-	return channelsN[1]
+	return channelsN[0]
 
 }
